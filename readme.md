@@ -36,9 +36,7 @@ protected $except = [
 
 Include the EZStripe JS on all your pages by adding the included blade component before your closing `</body>`
 ```php
-    <x-ezstripe-javascript />
-</body>
-</html>
+<x-ezstripe-javascript />
 ```
 
 Create a new WebhookController.php class that extends EZStripes WebhookController
