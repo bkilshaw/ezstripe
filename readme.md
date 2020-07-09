@@ -97,9 +97,10 @@ The rest of the settings are up to you. Links to a Terms of Service and Privacy 
 
 ## Using it
 
+### Stripe Checkout
 Redirecting to Stripe Checkout is simple. All you need is a form with `<form id='ezstripe'>` that submits a field with `name='price_id'`. The price_id is the ID of one of your prices from Stripe.
 
-####Example
+#### Example
 ```html
 <form id="ezstripe">
     @csrf
@@ -121,6 +122,13 @@ Redirecting to Stripe Checkout is simple. All you need is a form with `<form id=
 
     <button type="submit">Checkout</button>
 </form>
+```
+
+### Stripe Billing Portal
+Redirecting to Stripe Billing Portal couldn't be easier. All you need is a link that points to the `ezstripe.billing_portal` route. When a user is logged in and clicks the link they will be redirected to Stripes Billing Portal.
+
+```php
+<a href="{{ route('ezstripe.billing_portal') }}">Billing Portal</a>
 ```
 
 ## Handling Webhooks
