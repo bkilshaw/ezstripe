@@ -43,7 +43,7 @@ Create a new WebhookController.php class that extends EZStripes WebhookControlle
 ```php
 <?php
 
-use \bkilshaw\EZStripe\Http\Controllers\WebhookController as EZStripeController;
+use bkilshaw\EZStripe\Http\Controllers\WebhookController as EZStripeController;
 
 class WebhookController extends EZStripeController 
 {
