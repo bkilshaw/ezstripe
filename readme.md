@@ -54,7 +54,7 @@ class WebhookController extends EZStripeController
 
 Now that you have your WebhookController that can handle the webhook events, create a route in your `routes/web.php` to route the events:
 ```php
-Route::post('ezstripe/webhooks', [WebhookController::class, 'webhooks'])->name('ezstripe.webhooks');
+Route::post('ezstripe/webhooks', [App\Http\Controllers\WebhookController::class, 'webhooks'])->name('ezstripe.webhooks');
 ```
 
 Add the following environment variables to your `.env`. You can get your API Keys from Stripe [https://dashboard.stripe.com/apikeys](https://dashboard.stripe.com/apikeys).
