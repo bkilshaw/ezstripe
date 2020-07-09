@@ -1,6 +1,6 @@
 {
     "name": "bkilshaw/ezstripe",
-    "description": "Simple integration with Stripe for payments/subscriptions",
+    "description": "Easily add subscriptions to your Laravel app by relying on Stripe Checkout and Billing Portal",
     "license": "MIT",
     "authors": [
         {
