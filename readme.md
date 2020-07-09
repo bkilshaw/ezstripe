@@ -126,7 +126,7 @@ Redirecting to Stripe Checkout is simple. All you need is a form with `<form id=
 ## Handling Webhooks
 
 EZStripe will automatically update your user and add their stripe_id when they are first added to Stripe. 
-All other [Webhook Events](https://stripe.com/docs/api/events/types) you wish to handle can be done by adding a function to your WebhookController.
+All other [Webhook Events](https://stripe.com/docs/api/events/types) you wish to handle can be done by adding additional functions to your WebhookController.
 In order to have EZStripe handle the event, you must follow EZStripes function naming convention: camel case the event type, and prefix it with `handle`
 
 #### Examples
@@ -142,7 +142,7 @@ EZStripe Method: handleChargeFailed(array $payload){}
 EZStripe Method: handleOrderPaymentFailed(array $payload){}
 
    Stripe Event: subscription_schedule.expiring
-EZStripe Method: handleSubscriptionScheduleExpiring(){}
+EZStripe Method: handleSubscriptionScheduleExpiring(array $payload){}
 ```
 
 EZStripe comes with the following methods to interact with Stripe
