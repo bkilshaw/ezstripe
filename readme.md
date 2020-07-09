@@ -39,9 +39,10 @@ Include the EZStripe JS on all your pages by adding the included blade component
 <x-ezstripe-javascript />
 ```
 
-Create a new WebhookController.php class that extends EZStripes WebhookController
+Create a new class app\Http\Controllers\WebhookController.php class that extends EZStripes WebhookController
 ```php
 <?php
+namespace App\Http\Controllers;
 
 use bkilshaw\EZStripe\Http\Controllers\WebhookController as EZStripeController;
 
