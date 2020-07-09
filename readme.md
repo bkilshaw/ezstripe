@@ -94,6 +94,34 @@ Under Products, add the products and prices that the user should be able to pick
 
 The rest of the settings are up to you. Links to a Terms of Service and Privacy Policy are required. If you don't have one, check out [https://getterms.io/](https://getterms.io/)
 
+## Using it
+
+Redirecting to Stripe Checkout is simple. All you need is a form with `<form id='ezstripe'>` that submits a field with `name='price_id'`. The price_id is the ID of one of your prices from Stripe.
+
+####Example
+```html
+<form id="ezstripe">
+    @csrf
+
+    <select name="price_id">
+        @foreach(EZStripe::products() as $product)
+
+            @foreach($product->prices as $price)
+
+                {!-- EZStripe is designed for subscriptions, so we're excluding non-recurring prices here --}
+                @if(isset($price->recurring))
+                    <option value="{{ $price->id }}">${{ number_format($price->unit_amount/100,2) }} / {{ $price->recurring->interval }} - {{ $product->name }}</option>
+                @endif
+
+            @endforeach
+
+        @endforeach
+    </select>
+
+    <button type="submit">Checkout</button>
+</form>
+```
+
 ## Handling Webhooks
 
 EZStripe will automatically update your user and add their stripe_id when they are first added to Stripe. 
@@ -123,29 +151,6 @@ EZStripe::products([..stripe product ids...]); // EZStripe will only return the 
 EZStripe::checkout(); //
 EZStripe::billing_portal(); // Redirects the currently authorized user to Stripes Billing Portal.
 ```
-
-
-In order for the included javascript to properly process your form, please make sure you name your product field `price_id` and set the id of your form to `ezstripe`
-```html
-<form id="ezstripe">
-    @csrf
-    <input type="hidden" value="1" name="user_id" />
-
-    <select name="price_id">
-        @foreach(EZStripe::products() as $product)
-            @foreach($product->prices as $price)
-                {!-- EZStripe is designed for subscriptions, so we're only including recurring prices here --}
-                @if(isset($price->recurring))
-                    <option value="{{ $price->id }}">${{ number_format($price->unit_amount/100,2) }} / {{ $price->recurring->interval }} - {{ $product->name }}</option>
-                @endif
-            @endforeach
-        @endforeach
-    </select>
-    <br />
-    <button type="submit">Purchase</button>
-</form>
-```
-
 
 ## Change log
 
