@@ -30,9 +30,9 @@ class WebhookController
                 $payload, $stripe_signature, $endpoint_secret
             );
         } catch(\UnexpectedValueException $e) {
-            throw new AccessDeniedException($e->getMessage(), $e);
+            throw new AccessDeniedException($e->getMessage());
         } catch(\Stripe\Exception\SignatureVerificationException $e) {
-            throw new AccessDeniedException($e->getMessage(), $e);
+            throw new AccessDeniedException($e->getMessage());
         }
     }
 
