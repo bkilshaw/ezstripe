@@ -77,11 +77,23 @@ The Endpoint URL should point to `https://yourdomain.tld/ezstripe/webhooks`
 
 In Events to send, you can pick which events you would like to be notified of, or click receive all events. (Note: some actions within Stripe can result in 10+ events. It's generally best practice to only send the Webhooks you need and are going to listen for within your WebhookController).
 
-Once created, make sure you copy your Webhook Signing secret into your .env `STRIPE_WEBHOOK_SECRET=whsec_*`
+Once created, make sure you update your STRIPE_WEBHOOK_SECRET in your .env
+```
+STRIPE_WEBHOOK_SECRET=whsec_*
+````
 
-https://dashboard.stripe.com/test/settings/billing/portal
+To enable Stripes billing portal, please visit [https://dashboard.stripe.com/settings/billing/portal](https://dashboard.stripe.com/settings/billing/portal).
 
-Inside Stripe, setup your webhooks to post to your webhook URL (https://domain.tld/ezstripe/webhooks)
+Enable the following options:
+```
+    Billing History: Enable
+    Update Subscriptions: Enable
+    Cancel Subscriptions: Enable
+```
+
+Under Products, add the products and prices that the user should be able to pick from when updating their subscription.
+
+The rest of the settings are up to you. Links to a Terms of Service and Privacy Policy are required. If you don't have one, check out [https://getterms.io/](https://getterms.io/)
 
 ## Handling Webhooks
 
