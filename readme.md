@@ -132,7 +132,7 @@ In order for the included javascript to properly process your form, please make 
     <input type="hidden" value="1" name="user_id" />
 
     <select name="price_id">
-        @foreach($products as $product)
+        @foreach(EZStripe::products() as $product)
             @foreach($product->prices as $price)
                 {!-- EZStripe is designed for subscriptions, so we're only including recurring prices here --}
                 @if(isset($price->recurring))
