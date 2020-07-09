@@ -3,6 +3,7 @@
 namespace bkilshaw\EZStripe\Http\Controllers;
 
 use App\User;
+use http\Exception\UnexpectedValueException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Stripe\Event;
@@ -30,9 +31,9 @@ class WebhookController
                 $payload, $stripe_signature, $endpoint_secret
             );
         } catch(\UnexpectedValueException $e) {
-            throw new AccessDeniedException($e->getMessage());
+            abort(500, $e->getMessage());
         } catch(\Stripe\Exception\SignatureVerificationException $e) {
-            throw new AccessDeniedException($e->getMessage());
+            abort(500, $e->getMessage());
         }
     }
 
