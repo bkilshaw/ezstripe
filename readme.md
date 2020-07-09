@@ -45,7 +45,7 @@ Create a new WebhookController.php class that extends EZStripes WebhookControlle
 
 use \bkilshaw\EZStripe\Http\Controllers\WebhookController as EZStripeController;
 
-WebhookController extends EZStripeController 
+class WebhookController extends EZStripeController 
 {
     //
 }
@@ -56,16 +56,15 @@ Now that you have your WebhookController that can handle the webhook events, cre
 Route::post('ezstripe/webhooks', [WebhookController::class, 'webhooks'])->name('ezstripe.webhooks');
 ```
 
-Make sure you update your `config/ezstripe.php`. You can get your API Keys from Stripe [https://dashboard.stripe.com/apikeys](https://dashboard.stripe.com/apikeys).
+Add the following environment variables to your `.env`. You can get your API Keys from Stripe [https://dashboard.stripe.com/apikeys](https://dashboard.stripe.com/apikeys).
 
 ```php
-STRIPE_KEY=pk_*                // Stripes Publishable key
-STRIPE_SECRET=sk_*             // Stripes Secret key
-STRIPE_WEBHOOK_SECRET=whsec_*  // Stripes Webhook Secret
-CHECKOUT_SUCCESS_URL=          // The URL a user will be redirected to after they have successfully subscribed
-CHECKOUT_CANCEL_URL=           // The URL a user will be redirected to if they are in Stripe Checkout and hit 'cancel' or 'back'
-BILLING_PORTAL_RETURN_URL=     // The URL a user will be redirected to after vising Stripes Billing Portal
-
+STRIPE_KEY=Stripes Publishable key
+STRIPE_SECRET=Stripes Secret key
+STRIPE_WEBHOOK_SECRET=Stripes Webhook Secret
+CHECKOUT_SUCCESS_URL=The URL a user will be redirected to after they have successfully subscribed
+CHECKOUT_CANCEL_URL=The URL a user will be redirected to if they are in Stripe Checkout and hit 'cancel' or 'back'
+BILLING_PORTAL_RETURN_URL=The URL a user will be redirected to after vising Stripes Billing Portal
 ```
 
 
