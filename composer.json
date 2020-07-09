@@ -6,7 +6,8 @@
         {
             "name": "Brad Kilshaw",
             "email": "brad@kilshaw.ca",
-            "homepage": "https://kilshaw.ca"
+            "homepage": "https://kilshaw.ca",
+            "role": "Developer"
         }
     ],
     "homepage": "https://github.com/bkilshaw/ezstripe",
