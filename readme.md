@@ -138,18 +138,25 @@ EZStripe Method: handleCustomerCreated(array $payload){}
 EZStripe Method: handleChargeFailed(array $payload){}
 
    Stripe Event: order.payment_failed
-EZStripe Method: handleOrderPaymentFailed(array $payload)
+EZStripe Method: handleOrderPaymentFailed(array $payload){}
 
    Stripe Event: subscription_schedule.expiring
-EZStripe Method: handleSubscriptionScheduleExpiring()
+EZStripe Method: handleSubscriptionScheduleExpiring(){}
 ```
 
 EZStripe comes with the following methods to interact with Stripe
 ```php
-EZStripe::products(); // Lists all products you have created in stripe
-EZStripe::products([..stripe product ids...]); // EZStripe will only return the products with the ID's you passed in
-EZStripe::checkout(); //
-EZStripe::billing_portal(); // Redirects the currently authorized user to Stripes Billing Portal.
+// Returns a collection of your products in Stripe
+EZStripe::products();
+
+// Return a collection of your products in Stripe, only if the stripe product_id matches one that's been passed in
+EZStripe::products(array $product_ids);
+
+// Accepts a Illuminate\Http\Request and will return a Stripe Checkout Session the client can use for the redirect
+EZStripe::checkout(Request $request); 
+
+// Redirect the currently authorized user to Stripes Billing Portal if they have a stripe_id set
+EZStripe::billing_portal();
 ```
 
 ## Change log
