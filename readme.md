@@ -1,3 +1,7 @@
+#### THIS PACKAGE IS STILL UNDER DEVELOPMENT. EXPECT BREAKING CHANGES.
+----
+
+
 # EZStripe
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
