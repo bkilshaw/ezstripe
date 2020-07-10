@@ -117,7 +117,7 @@ When you're creating a new endpoint, the URL should point to `https://yourdomain
 
 Under the _Events to send_ section pick which events you would like to be notified of, or click `receive all events`. (_Note: some actions within Stripe can trigger many events to run, each one hitting your webhook endpoint. It's best practice to only send the Webhooks you need_)
 
-Once you have created your Webhook Endpoint, copy the `Signing secret` as we will need it later.
+Once you have created your Webhook Endpoint, copy the `Signing secret` into the `STRIPE_WEBHOOK_SECRET` section of your .env file.
 
 *Note:* If you plan on testing out your application locally, you will need to configure a local endpoint for the webhooks. If you run Laravel Valet you can run `valet share` to spawn a ngrok session and use the forwarding address in your Webhook endpoing (ie. `https://dk38alk3a.ngrok.io/ezstripe/webhooks`).
 Every time you restart the ngrok tunnel it will generate a new domain, so you will need to update the Webhook endpoint in Stripe.
