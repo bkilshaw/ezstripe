@@ -158,7 +158,9 @@ Redirecting to Stripe Checkout is simple. All you need is a form with `<form id=
 
                 {!-- EZStripe is designed for subscriptions, so we're excluding non-recurring prices here --}
                 @if(isset($price->recurring))
-                    <option value="{{ $price->id }}">${{ number_format($price->unit_amount/100,2) }} / {{ $price->recurring->interval }} - {{ $product->name }}</option>
+                    <option value="{{ $price->id }}">
+                        ${{ number_format($price->unit_amount/100,2) }} / {{ $price->recurring->interval }} - {{ $product->name }}
+                    </option>
                 @endif
 
             @endforeach
