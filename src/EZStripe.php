@@ -55,8 +55,7 @@ class EZStripe
 
     protected function get_authenticated_user()
     {
-        if(Auth::check())
-        {
+        if(Auth::check()) {
             return Auth::user();
         } else {
             abort(500, 'No user is authenticated');
