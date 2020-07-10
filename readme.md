@@ -15,7 +15,7 @@ Easily add subscriptions to your Laravel app by relying on Stripe Checkout and B
 This README is broken down into a three sections:
 1. [Installation](#1-installation)
 2. [Configuring your application](#2-configuring-your-application)
-3. [Configuring Stripe](#3-configuring-striperipe)
+3. [Configuring Stripe](#3-configuring-stripe)
 
 All steps should be covered. If you run into any issues or have any recommendations please create an Issue.
 
