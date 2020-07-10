@@ -2,10 +2,18 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+Easily add subscriptions to your Laravel app by relying on Stripe Checkout and Billing Portal to do the heavy lifting. 
+
+
+## Introduction
+
+This README is broken down into a three sections:
+1. Installation
+2. Configuring Stripe
+3. Configuring your application
+
+All steps should be covered. If you run into any issues or have any recommendations please create an Issue.
 
 ## Installation
 
@@ -15,7 +23,34 @@ Via Composer
 $ composer require bkilshaw/ezstripe
 ```
 
-## Setup
+## Setting Up Stripe
+
+In order to receive webhook events you must create an endpoint within Stripe here: [https://dashboard.stripe.com/webhooks](https://dashboard.stripe.com/webhooks)
+
+The Endpoint URL should point to `https://yourdomain.tld/ezstripe/webhooks`
+
+In Events to send, you can pick which events you would like to be notified of, or click receive all events. (Note: some actions within Stripe can result in 10+ events. It's generally best practice to only send the Webhooks you need and are going to listen for within your WebhookController).
+
+Once created, make sure you update your STRIPE_WEBHOOK_SECRET in your .env
+```
+STRIPE_WEBHOOK_SECRET=whsec_*
+````
+
+To enable Stripes billing portal, please visit [https://dashboard.stripe.com/settings/billing/portal](https://dashboard.stripe.com/settings/billing/portal).
+
+Enable the following options:
+```
+    Billing History: Enable
+    Update Subscriptions: Enable
+    Cancel Subscriptions: Enable
+```
+
+Under Products, add the products and prices that the user should be able to pick from when updating their subscription.
+
+The rest of the settings are up to you. Links to a Terms of Service and Privacy Policy are required. If you don't have one, check out [https://getterms.io/](https://getterms.io/)
+
+
+## Configuring your application
 
 First, publish the assets:
 ```
@@ -27,7 +62,7 @@ Run the included migrations to add the `stripe_id` field to your User table.
 php artisan migrate
 ```
 
-In order to allow Stripe to send webhook events, update your VerifyCSRFToken.php so your Laravel application know's it doesn't need CSRF tokens on these endpoints:
+In order to allow Stripe to send webhook events, update your `VerifyCSRFToken.php` so your Laravel application know's it doesn't need CSRF tokens on these endpoints:
 ```php
 protected $except = [
     'ezstripe/*',
@@ -39,7 +74,7 @@ Include the EZStripe JS on all your pages by adding the included blade component
 <x-ezstripe-javascript />
 ```
 
-Create a new class app\Http\Controllers\WebhookController.php class that extends EZStripes WebhookController
+Create a new class `app\Http\Controllers\WebhookController.php` class that extends EZStripes WebhookController
 ```php
 <?php
 namespace App\Http\Controllers;
@@ -67,33 +102,6 @@ CHECKOUT_SUCCESS_URL=The URL a user will be redirected to after they have succes
 CHECKOUT_CANCEL_URL=The URL a user will be redirected to if they are in Stripe Checkout and hit 'cancel' or 'back'
 BILLING_PORTAL_RETURN_URL=The URL a user will be redirected to after vising Stripes Billing Portal
 ```
-
-
-## Setting Up Stripe
-
-In order to receive webhook events you must create an endpoint within Stripe here: [https://dashboard.stripe.com/webhooks](https://dashboard.stripe.com/webhooks)
-
-The Endpoint URL should point to `https://yourdomain.tld/ezstripe/webhooks`
-
-In Events to send, you can pick which events you would like to be notified of, or click receive all events. (Note: some actions within Stripe can result in 10+ events. It's generally best practice to only send the Webhooks you need and are going to listen for within your WebhookController).
-
-Once created, make sure you update your STRIPE_WEBHOOK_SECRET in your .env
-```
-STRIPE_WEBHOOK_SECRET=whsec_*
-````
-
-To enable Stripes billing portal, please visit [https://dashboard.stripe.com/settings/billing/portal](https://dashboard.stripe.com/settings/billing/portal).
-
-Enable the following options:
-```
-    Billing History: Enable
-    Update Subscriptions: Enable
-    Cancel Subscriptions: Enable
-```
-
-Under Products, add the products and prices that the user should be able to pick from when updating their subscription.
-
-The rest of the settings are up to you. Links to a Terms of Service and Privacy Policy are required. If you don't have one, check out [https://getterms.io/](https://getterms.io/)
 
 ## Using it
 
