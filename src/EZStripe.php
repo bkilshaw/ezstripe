@@ -53,6 +53,16 @@ class EZStripe
         $this->products = $products;
     }
 
+    protected function get_authenticated_user()
+    {
+        if(Auth::check())
+        {
+            return Auth::user();
+        } else {
+            abort(500, 'No user is authenticated');
+        }
+    }
+
     private function load_products_from_stripe()
     {
         if(!$this->stripe->products->all()->isEmpty())
@@ -87,7 +97,8 @@ class EZStripe
     }
 
     public function generate_checkout_session(string $price_id){
-        $user = Auth::user();
+
+        $user = $this->get_authenticated_user();
 
         $checkout = [
             'payment_method_types'  => ['card'],
@@ -116,8 +127,7 @@ class EZStripe
 
     public function billing_portal()
     {
-
-        $user = Auth::user();
+        $user = $this->get_authenticated_user();
 
         if(empty($user->stripe_id))
         {
