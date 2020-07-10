@@ -13,13 +13,13 @@ Easily add subscriptions to your Laravel app by relying on Stripe Checkout and B
 ## Introduction
 
 This README is broken down into a three sections:
-1. Installation
-2. Configuring Stripe
-3. Configuring your application
+1. [Installation](#1-installation)
+2. [Configuring your application](#2-configuring-your-application)
+3. [Configuring Stripe](#3-configuring-striperipe)
 
 All steps should be covered. If you run into any issues or have any recommendations please create an Issue.
 
-## Installation
+## 1. Installation
 
 Via Composer
 
@@ -29,7 +29,7 @@ $ composer require bkilshaw/ezstripe
 
 
 
-## Configuring your application
+## 2. Configuring your application
 
 Publish EZStripes assets:
 ```
@@ -98,7 +98,7 @@ CHECKOUT_CANCEL_URL=
 BILLING_PORTAL_RETURN_URL=
 ```
 
-## Setting Up Stripe
+## 3. Configuring Stripe
 
 ### Webhooks
 
