@@ -41,7 +41,7 @@ Stripe does a great job explaining Webhooks in their docs [https://stripe.com/do
 
 
 #### Webhooks and EZStripe
-In order to receive webhook events you must tell Stripe where to send them by creating a Webhook Endpoint within Stripe. You can do this here: [https://dashboard.stripe.com/webhooks](https://dashboard.stripe.com/webhooks)
+In order to keep your application up to date with changes in Stripe, you must tell Stripe where to send the webhooks by creating a Webhook Endpoint within Stripe. You can do this here: [https://dashboard.stripe.com/webhooks](https://dashboard.stripe.com/webhooks)
 
 When you're creating a new endpoint, the URL should point to `https://yourdomain.tld/ezstripe/webhooks` where you replace `yourdomain.tld` with your actual domain. (EZStripe automatically registers the `/ezstripe/webhooks` endpoint in your application. You can confirm this by running `php artisan route:list`)
 
