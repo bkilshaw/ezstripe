@@ -27,17 +27,17 @@ $ composer require bkilshaw/ezstripe
 
 ## Configuring your application
 
-First, publish the assets:
+Publish EZStripes assets:
 ```
 php artisan vendor:publish --tag=ezstripe.config --tag=ezstripe.views --force
 ```
 
-Run the included migrations to add the `stripe_id` field to your User table.
+Run the included migrations to add the `stripe_id` field to your `users` table.
 ```php
 php artisan migrate
 ```
 
-In order to allow Stripe to send webhook events, update your `VerifyCSRFToken.php` so your Laravel application know's it doesn't need CSRF tokens on these endpoints:
+Update your `VerifyCSRFToken.php` so Laravel skips CSRF protection on EZStripes endpoints:
 ```php
 protected $except = [
     'ezstripe/*',
