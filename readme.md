@@ -71,6 +71,8 @@ Add the following environment variables to your `.env`. You can find your Stripe
 
 The `STRIPE_WEBHOOK_SECRET` be generated in a few steps and can be left alone for the time being
 
+All three URLs are up to you. The Success and Cancel URL's typically return back to your product page. The Billig Portal Return URL can point back to your users home/dashboard.
+
 
 ```php
 # Stripes Publishable key
