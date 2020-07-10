@@ -124,7 +124,7 @@ Once you have created your Webhook Endpoint, copy the `Signing secret` into the 
 > If you plan on testing out your application locally, you will need to configure a local endpoint for the webhooks. If you run Laravel Valet you can run `valet share` to spawn a ngrok session and use the forwarding address in your Webhook endpoing (ie. `https://dk38alk3a.ngrok.io/ezstripe/webhooks`).
 Every time you restart the ngrok tunnel it will generate a new domain, so you will need to update the Webhook endpoint in Stripe.
 >
-> An alternative option to ngrok is to use [Stripe CLI](https://stripe.com/docs/webhooks/test)
+> An alternative to using ngrok is using [Stripe CLI](https://stripe.com/docs/webhooks/test)
 
 #### Stripe Billing Portal
 To enable Stripes billing portal, please visit [https://dashboard.stripe.com/settings/billing/portal](https://dashboard.stripe.com/settings/billing/portal).
