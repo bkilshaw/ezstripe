@@ -23,49 +23,6 @@ Via Composer
 $ composer require bkilshaw/ezstripe
 ```
 
-## Setting Up Stripe
-
-### Webhooks
-
-#### What are webhooks?
-Stripe uses webhooks to notify your application when an event happens in your account.
-
-Example events:
-- Customer Created
-- Invoice Paid
-- Subscription Created
-- Subscription Expiring
-- A customer's credit card is expiring
-
-Stripe does a great job explaining Webhooks in their docs [https://stripe.com/docs/webhooks](https://stripe.com/docs/webhooks).
-
-
-#### Webhooks and EZStripe
-In order to keep your application up to date with changes in Stripe, you must tell Stripe where to send the webhooks by creating a Webhook Endpoint within Stripe. You can do this here: [https://dashboard.stripe.com/webhooks](https://dashboard.stripe.com/webhooks)
-
-EZStripe automatically registers the `/ezstripe/webhooks` endpoint in your application. You can confirm this by running `php artisan route:list`. When you're creating a new endpoint, the URL should point to `https://yourdomain.tld/ezstripe/webhooks` where you replace `yourdomain.tld` with your actual domain. 
-In Events to send, you can pick which events you would like to be notified of, or click receive all events. (_Note: some actions within Stripe can trigger many events to run, each one hitting your webhook endpoint. It's best practice to only send the Webhooks you need_)
-
-Once you have created your Webhook Endpoint, copy the `Signing secret` as we will need it later.
-
-*Note:* If you plan on testing out your application locally, you will need to configure a local endpoint for the webhooks. If you run Laravel Valet you can run `valet share` to spawn a ngrok session and use the forwarding address in your Webhook endpoing (ie. `https://dk38alk3a.ngrok.io/ezstripe/webhooks`).
-Every time you restart the ngrok tunnel it will generate a new domain, so you will need to update the Webhook endpoint in Stripe.
-
-An alternative option to ngrok is to use [Stripe CLI](https://stripe.com/docs/webhooks/test)
-
-#### Stripe Billing Portal
-To enable Stripes billing portal, please visit [https://dashboard.stripe.com/settings/billing/portal](https://dashboard.stripe.com/settings/billing/portal).
-
-Enable the following options:
-```
-    Billing History: Enable
-    Update Subscriptions: Enable
-    Cancel Subscriptions: Enable
-```
-
-Under Products, add the products and prices that the user should be able to pick from when updating their subscription.
-
-The rest of the settings are up to you. Links to your Terms of Service and Privacy Policy are required. If you don't have one, check out [https://getterms.io/](https://getterms.io/)
 
 
 ## Configuring your application
@@ -120,6 +77,50 @@ CHECKOUT_SUCCESS_URL=The URL a user will be redirected to after they have succes
 CHECKOUT_CANCEL_URL=The URL a user will be redirected to if they are in Stripe Checkout and hit 'cancel' or 'back'
 BILLING_PORTAL_RETURN_URL=The URL a user will be redirected to after vising Stripes Billing Portal
 ```
+
+## Setting Up Stripe
+
+### Webhooks
+
+#### What are webhooks?
+Stripe uses webhooks to notify your application when an event happens in your account.
+
+Example events:
+- Customer Created
+- Invoice Paid
+- Subscription Created
+- Subscription Expiring
+- A customer's credit card is expiring
+
+Stripe does a great job explaining Webhooks in their docs [https://stripe.com/docs/webhooks](https://stripe.com/docs/webhooks).
+
+#### Webhooks and EZStripe
+In order to keep your application up to date with changes in Stripe, you must tell Stripe where to send the webhooks by creating a Webhook Endpoint within Stripe. You can do this here: [https://dashboard.stripe.com/webhooks](https://dashboard.stripe.com/webhooks)
+
+EZStripe automatically registers the `/ezstripe/webhooks` endpoint in your application. You can confirm this by running `php artisan route:list`. When you're creating a new endpoint, the URL should point to `https://yourdomain.tld/ezstripe/webhooks` where you replace `yourdomain.tld` with your actual domain. 
+In Events to send, you can pick which events you would like to be notified of, or click receive all events. (_Note: some actions within Stripe can trigger many events to run, each one hitting your webhook endpoint. It's best practice to only send the Webhooks you need_)
+
+Once you have created your Webhook Endpoint, copy the `Signing secret` as we will need it later.
+
+*Note:* If you plan on testing out your application locally, you will need to configure a local endpoint for the webhooks. If you run Laravel Valet you can run `valet share` to spawn a ngrok session and use the forwarding address in your Webhook endpoing (ie. `https://dk38alk3a.ngrok.io/ezstripe/webhooks`).
+Every time you restart the ngrok tunnel it will generate a new domain, so you will need to update the Webhook endpoint in Stripe.
+
+An alternative option to ngrok is to use [Stripe CLI](https://stripe.com/docs/webhooks/test)
+
+#### Stripe Billing Portal
+To enable Stripes billing portal, please visit [https://dashboard.stripe.com/settings/billing/portal](https://dashboard.stripe.com/settings/billing/portal).
+
+Enable the following options:
+```
+    Billing History: Enable
+    Update Subscriptions: Enable
+    Cancel Subscriptions: Enable
+```
+
+Under Products, add the products and prices that the user should be able to pick from when updating their subscription.
+
+The rest of the settings are up to you. Links to your Terms of Service and Privacy Policy are required. If you don't have one, check out [https://getterms.io/](https://getterms.io/)
+
 
 ## Using it
 
