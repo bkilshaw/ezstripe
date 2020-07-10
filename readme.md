@@ -67,9 +67,7 @@ Create a route in your `routes/web.php` to route the `/ezstripe/webhooks` route 
 Route::post('ezstripe/webhooks', [App\Http\Controllers\WebhookController::class, 'webhooks'])->name('ezstripe.webhooks');
 ```
 
-Add the following environment variables to your `.env`.
-
-You can find your Stripe Keys here [https://dashboard.stripe.com/apikeys](https://dashboard.stripe.com/apikeys)
+Add the following environment variables to your `.env`. You can find your Stripe Keys here [https://dashboard.stripe.com/apikeys](https://dashboard.stripe.com/apikeys)
 
 The `STRIPE_WEBHOOK_SECRET` be generated in a few steps and can be left alone for the time being
 
