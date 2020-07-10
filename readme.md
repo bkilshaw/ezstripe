@@ -77,14 +77,19 @@ The `STRIPE_WEBHOOK_SECRET` be generated in a few steps and can be left alone fo
 ```php
 # Stripes Publishable key
 STRIPE_KEY=pk_* 
+
 # Stripes Secret key
 STRIPE_SECRET=sk_*
+
 # Stripes Webhook Secret
 STRIPE_WEBHOOK_SECRET=whsec_*
+
 # The URL a user will be redirected to after they have successfully subscribed
 CHECKOUT_SUCCESS_URL=
+
 # The URL a user will be redirected to if they are in Stripe Checkout and hit 'cancel' or 'back'
 CHECKOUT_CANCEL_URL=
+
 # The URL a user will be redirected to after vising Stripes Billing Portal
 BILLING_PORTAL_RETURN_URL=
 ```
