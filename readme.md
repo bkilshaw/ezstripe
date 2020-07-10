@@ -114,7 +114,8 @@ Stripe does a great job explaining Webhooks in their docs [https://stripe.com/do
 In order to keep your application up to date with changes in Stripe, you must provide Stripe with an endpoint to send the webhooks. You do this by creating a Webhook Endpoint within Stripe here: [https://dashboard.stripe.com/webhooks](https://dashboard.stripe.com/webhooks)
 
 When you're creating a new endpoint, the URL should point to `https://yourdomain.tld/ezstripe/webhooks` where you replace `yourdomain.tld` with your actual domain. 
-In Events to send, you can pick which events you would like to be notified of, or click receive all events. (_Note: some actions within Stripe can trigger many events to run, each one hitting your webhook endpoint. It's best practice to only send the Webhooks you need_)
+
+Under the *Events to send* section pick which events you would like to be notified of, or click `receive all events`. (_Note: some actions within Stripe can trigger many events to run, each one hitting your webhook endpoint. It's best practice to only send the Webhooks you need_)
 
 Once you have created your Webhook Endpoint, copy the `Signing secret` as we will need it later.
 
