@@ -5,8 +5,6 @@ namespace bkilshaw\EZStripe;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 class EZStripe
 {
@@ -28,20 +26,6 @@ class EZStripe
         return config('ezstripe.stripe_secret');
     }
 
-    public function test()
-    {
-        foreach($this->products(['prod_HZhRpMq3VDlx3r']) as $product)
-        {
-            echo $product->description. "<br />";
-        }
-        dd($this->products);
-        EZStripe::plans();
-
-        EZStripe::checkout(
-            User::find(1),
-            "price_1H0DzWJvVASC5FcKbZNZt296"
-        );
-    }
 
     public function __construct()
     {
@@ -132,11 +116,12 @@ class EZStripe
 
     public function billing_portal()
     {
+
         $user = Auth::user();
 
         if(empty($user->stripe_id))
         {
-            throw new AccessDeniedException('User has no stripe_id');
+            abort(500, 'User has no stripe_id');
         }
 
         $stripe_session = \Stripe\BillingPortal\Session::create([
