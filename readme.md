@@ -37,7 +37,7 @@ Run the included migrations to add the `stripe_id` field to your `users` table.
 php artisan migrate
 ```
 
-Update your `VerifyCSRFToken.php` so Laravel skips CSRF protection on EZStripes endpoints:
+Update your `VerifyCSRFToken.php` to bypass CSRF protection on EZStripes endpoints:
 ```php
 protected $except = [
     'ezstripe/*',
