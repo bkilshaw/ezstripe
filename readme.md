@@ -144,7 +144,7 @@ The rest of the settings are up to you. Links to your Terms of Service and Priva
 ## Using it
 
 ### Stripe Checkout
-Redirecting to Stripe Checkout is simple. All you need is a form with `<form id='ezstripe'>` that submits a field with `name='price_id'`. The price_id is the ID of one of your prices from Stripe.
+Redirecting to Stripe Checkout is simple. All you need is a form with `<form id='ezstripe'>` that contains an input where `name='price_id'`. The `price_id` is the ID of one of your prices from Stripe and is returned with `EZStripe::products()`
 
 #### Example
 ```html
